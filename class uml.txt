@@ -1,0 +1,50 @@
+@startuml
+class User {
+    - int userID
+    - String name
+    - String email
+    - String password
+    + login(email: String, password: String)
+    + register()
+} 
+class Admin {
+    - int adminID
+    - String username
+    - String password
+    + manageBusInfo()
+}
+
+class Bus {
+    - int busID
+    - String busNumber
+    - String source
+    - String destination
+    - int seatsAvailable
+    + displayBusDetails()
+}
+
+
+class Booking {
+    - int bookingID
+    - int userID
+    - int busID
+    - String date
+    - String paymentStatus
+    + confirmBooking()
+    + cancelBooking()
+}
+
+class Payment {
+    - int paymentID
+    - int bookingID
+    - double amount
+    - String paymentStatus
+    + processPayment()
+}
+
+
+User "1" -- "many" Booking
+Admin "1" -- "many" Bus
+Bus "1" -- "many" Booking
+Booking "1" -- "1" Payment
+@enduml
